@@ -1,0 +1,23 @@
+{
+  "name": "arx-level-statistics",
+  "version": "0.0.1",
+  "description": "Gives some stats about the level",
+  "main": "src/index.mjs",
+  "bin": {
+    "dimensions": "bin/dimensions.mjs"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meszaros-lajos-gyorgy/arx-level-statistics.git"
+  },
+  "author": "Lajos Meszaros <m_lajos@hotmail.com>",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/meszaros-lajos-gyorgy/arx-level-statistics/issues"
+  },
+  "homepage": "https://github.com/meszaros-lajos-gyorgy/arx-level-statistics#readme",
+  "dependencies": {
+    "minimist": "^1.2.5"
+  }
+}
