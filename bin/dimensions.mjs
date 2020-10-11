@@ -4,6 +4,9 @@ import fs from 'fs'
 import { EOL } from 'os'
 import minimist from 'minimist'
 import { fileExists, getPackageVersion, streamToBuffer } from './helpers.mjs'
+import { getLevelDimensions } from '../src/index.mjs';
+import { getPolygonDimensions } from '../src/index.mjs';
+import { getAllRoomDimensions } from '../src/index.mjs';
 
 const args = minimist(process.argv.slice(2), {
   boolean: ['version']
@@ -39,30 +42,21 @@ const format = n => {
     process.exit(1)
   }
 
-  const file = JSON.parse(await streamToBuffer(input))
+  const json = JSON.parse(await streamToBuffer(input))
 
-  const sizeX = 160
-  const sizeZ = 160
+  const { width, height } = getLevelDimensions(json)
 
   console.log(EOL + 'Level:')
-  console.log(`  x: ${sizeX * 100} | z: ${sizeZ * 100}`)
+  console.log(`  width: ${width * 100} | height: ${height * 100}`)
 
-  const x = [5100, 5900]
-  const y = [200, 340]
-  const z = [10420, 12800]
+  const { x, y, z } = getPolygonDimensions(json)
 
   console.log(EOL + 'Polygons:')
   console.log(`  X: [ ${format(x[0])} .. ${format(x[1])} ]`)
   console.log(`  Y: [ ${format(y[0])} .. ${format(y[1])} ]`)
   console.log(`  Z: [ ${format(z[0])} .. ${format(z[1])} ]`)
 
-  const rooms = [
-    {
-      x: [5100, 5900],
-      y: [200, 340],
-      z: [10420, 12800]
-    }
-  ]
+  const rooms = getAllRoomDimensions(json)
 
   console.log(EOL + 'Rooms:')
   rooms.forEach((room, idx) => {
