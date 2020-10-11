@@ -8,4 +8,4 @@ Gives some stats about the level
 
 ## usage
 
-`dimensions level8.json`
+`dimensions fast.fts.json`
