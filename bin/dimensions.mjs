@@ -38,11 +38,18 @@ const format = n => {
     input = process.openStdin()
   }
 
+  let json = JSON.parse(await streamToBuffer(input))
+
+  if (json.meta.type === 'combined') {
+    json = json.fts
+  } else if (json.meta.type !== 'fts') {
+    console.error('error: unsupported meta type, expected "combined" or "fts"')
+    hasErrors = true
+  }
+
   if (hasErrors) {
     process.exit(1)
   }
-
-  const json = JSON.parse(await streamToBuffer(input))
 
   const { width, height } = getLevelDimensions(json)
 

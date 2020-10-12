@@ -9,3 +9,5 @@ Gives some stats about the level
 ## usage
 
 `dimensions fast.fts.json`
+
+`cat level8.combined.json | dimensions`
